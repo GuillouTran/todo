@@ -114,16 +114,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div className='alert alert-info fixed-bottom'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-sm-12'>
-                GnDx: <a href='https://gndx.co/formulario-contacto-react-firebase/' className='alert-link'>Formulario de Contacto con React + Firebase </a>
-                GitHub: <a href='https://github.com/gndx/react-form-firebase' className='alert-link'>react-form-firebase</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
