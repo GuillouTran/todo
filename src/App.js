@@ -26,7 +26,7 @@ class App extends Component {
     this.refs.bookVault.reset();
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     let formRef = firebaseConf.database().ref('form').orderByKey().limitToLast(100);
     formRef.on('child_added', snapshot => {
       const { title, author, isbn, phone, message, publisher } = snapshot.val();
