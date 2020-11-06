@@ -19,7 +19,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gndx/react-form-firebase.git"
+    "url": "git+https://github.com/guilloutran/todo.git"
   },
   "keywords": [
     "react",
@@ -28,10 +28,10 @@
     "contact",
     "form"
   ],
-  "author": "Oscar Barajas <oscar@dragons.mx>",
+  "author": "Nghia Tran <oscar@dragons.mx>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gndx/react-form-firebase/issues"
+    "url": "https://github.com/guilloutran/todo/issues"
   },
-  "homepage": "https://github.com/gndx/react-form-firebase#readme"
+  "homepage": "https://github.com/guilloutran/todo#readme"
 }
