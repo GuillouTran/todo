@@ -23,14 +23,14 @@ class App extends Component {
   }
 
   resetForm() {
-    this.refs.contactForm.reset();
+    this.refs.bookVault.reset();
   }
 
   componentWillMount() {
-    let formRef = firebaseConf.database().ref('form').orderByKey().limitToLast(6);
+    let formRef = firebaseConf.database().ref('form').orderByKey().limitToLast(100);
     formRef.on('child_added', snapshot => {
-      const { name, email, city, phone, message } = snapshot.val();
-      const data = { name, email, city, phone, message };
+      const { title, author, isbn, phone, message, publisher } = snapshot.val();
+      const data = { title, author, isbn, phone, message, publisher };
       this.setState({ form: [data].concat(this.state.form) });
     })
   }
@@ -38,17 +38,17 @@ class App extends Component {
   sendMessage(e) {
     e.preventDefault();
     const params = {
-      name: this.inputName.value,
-      email: this.inputEmail.value,
-      city: this.inputCity.value,
-      phone: this.inputPhone.value,
-      message: this.textAreaMessage.value
+      title: this.inputTitle.value,
+      author: this.inputAuthor.value,
+      publisher: this.inputPublisher.value,
+      isbn: this.inputISBN.value,
+      comment: this.textComment.value
     };
-    if (params.name && params.email && params.phone && params.phone && params.message) {
+    if (params.title && params.author && params.publisher && params.isbn && params.comment) {
       firebaseConf.database().ref('form').push(params).then(() => {
-        this.showAlert('success', 'Your message was sent successfull');
+        this.showAlert('success', 'The book was successfully submitted');
       }).catch(() => {
-        this.showAlert('danger', 'Your message could not be sent');
+        this.showAlert('danger', 'The book might not been saved');
       });
       this.resetForm();
     } else {
@@ -67,31 +67,28 @@ class App extends Component {
         <div className='container' style={{ padding: `40px 0px` }}>
           <div className='row'>
             <div className='col-sm-4'>
-              <h2>Contact Form</h2>
-              <form onSubmit={this.sendMessage.bind(this)} ref='contactForm' >
+              <h2>Book Vault</h2>
+              <form onSubmit={this.sendMessage.bind(this)} ref='bookVault' >
                 <div className='form-group'>
-                  <label htmlFor='name'>Name</label>
-                  <input type='text' className='form-control' id='name' placeholder='Name' ref={name => this.inputName = name} />
+                  <label htmlFor='title'>Title</label>
+                  <input type='text' className='form-control' id='title' placeholder='The title of the book' ref={title => this.inputTitle = title} />
                 </div>
                 <div className='form-group'>
-                  <label htmlFor='exampleInputEmail1'>Email</label>
-                  <input type='email' className='form-control' id='email' placeholder='Email' ref={email => this.inputEmail = email} />
+                  <label htmlFor='author'>Author</label>
+                  <input type='text' className='form-control' id='author' placeholder='The author of the book' ref={author => this.inputAuthor = author} />
                 </div>
                 <div className='form-group'>
-                  <label htmlFor='city'>City</label>
-                  <select className='form-control' id='city' ref={city => this.inputCity = city}>
-                    <option value='México'>México</option>
-                    <option value='Guadalajara'>Guadalajara</option>
-                    <option value='Monterrey'>Monterrey</option>
-                  </select>
+                  <label htmlFor='publisher'>Publisher</label>
+                  <input type='text' className='form-control' id='publisher' placeholder='The Publisher of the book' ref={publisher => this.inputPublisher = publisher} />
+                </div>    
+                <div className='form-group'>
+                  <label htmlFor='isbn'>ISBN-13</label>
+                  <input type='text' className='form-control' id='isbn' placeholder='Usually start with 978 or 979' ref={isbn => this.inputISBN = isbn}>
+                  </input>
                 </div>
                 <div className='form-group'>
-                  <label htmlFor='phone'>Phone</label>
-                  <input type='number' className='form-control' id='phone' placeholder='+52 1' ref={phone => this.inputPhone = phone} />
-                </div>
-                <div className='form-group'>
-                  <label htmlFor='message'>Message</label>
-                  <textarea className='form-control' id='message' rows='3' ref={message => this.textAreaMessage = message}></textarea>
+                  <label htmlFor='comment'>Comment</label>
+                  <textarea type='text' className='form-control' id='comment' rows='3' ref={comment => this.textComment = comment}></textarea>
                 </div>
                 <button type='submit' className='btn btn-primary'>Send</button>
               </form>
