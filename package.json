@@ -6,6 +6,7 @@
     "firebase": "4.6.2",
     "react": "16.1.0",
     "react-dom": "16.14.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "1.0.17"
   },
   "scripts": {
@@ -33,5 +34,5 @@
   "bugs": {
     "url": "https://github.com/guilloutran/todo/issues"
   },
-  "homepage": "https://github.com/guilloutran/todo#readme"
+  "homepage": "https://vault.guilloutran.com/"
 }
