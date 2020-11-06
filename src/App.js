@@ -96,14 +96,15 @@ class App extends Component {
             <div className='col-sm-8'>
               <div className='row'>
                 {this.state.form.map(form =>
-                  <div className='col-sm-6' key={form.phone} style={{ margin: `0px 0px 30px 0px` }}>
+                  <div className='col-sm-4' key={form.phone} style={{ margin: `0px 0px 30px 0px` }}>
                     <div className='card'>
                       <div className='card-body'>
-                        <h4 className='card-title'>{form.name}</h4>
-                        <h6 className='card-subtitle mb-2 text-muted'>{form.city}</h6>
-                        <p className='card-text'>{form.message}</p>
-                        <a href={`tel:${form.phone}`} className='card-link'>{form.phone}</a>
-                        <a href={`mailto:${form.email}`} className='card-link'>{form.email}</a>
+                        <h4 className='card-title'>{form.title}</h4>
+                        <h6 className='card-subtitle mb-2 text-muted'>{form.author}</h6>
+                        <h6 className='card-subtitle mb-2 text-muted'>{form.publisher}</h6>
+                        <p className='card-text'>{form.isbn}</p>
+                        <a className='card-link'>{form.isbn}</a>
+                        <p className='card-link'>{form.comment}</p>
                       </div>
                     </div>
                   </div>)}
