@@ -84,7 +84,12 @@ class App extends Component {
             <div className="container">{this.state.alertData.message}</div>
           </div>
         )}
-        <div className="container" style={{ padding: `40px 0px` }}>
+        <div
+          className="container"
+          style={{
+            padding: `40px 0px`,
+          }}
+        >
           {" "}
           <div className="row">
             <div className="col-sm-4">
