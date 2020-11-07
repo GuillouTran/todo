@@ -124,7 +124,7 @@ class App extends Component {
                     placeholder="The Publisher of the book"
                     ref={(publisher) => (this.inputPublisher = publisher)}
                   />
-                </div>{" "}
+                </div>
                 <div className="form-group">
                   <label htmlFor="isbn">ISBN - 13 </label>
                   <input
