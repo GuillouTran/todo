@@ -29,8 +29,8 @@ class App extends Component {
   UNSAFE_componentWillMount() {
     let formRef = firebaseConf.database().ref('form').orderByKey().limitToLast(100);
     formRef.on('child_added', snapshot => {
-      const { title, author, isbn, phone, message, publisher } = snapshot.val();
-      const data = { title, author, isbn, phone, message, publisher };
+      const { title, author, isbn, publisher, date, date2, comment } = snapshot.val();
+      const data = { title, author, isbn, publisher, date, date2, comment};
       this.setState({ form: [data].concat(this.state.form) });
     })
   }
@@ -42,6 +42,8 @@ class App extends Component {
       author: this.inputAuthor.value,
       publisher: this.inputPublisher.value,
       isbn: this.inputISBN.value,
+      date: this.inputDate.value,
+      date2: this.inputDate2.value,
       comment: this.textComment.value
     };
     if (params.title && params.author && params.publisher && params.isbn && params.comment) {
@@ -83,8 +85,15 @@ class App extends Component {
                 </div>    
                 <div className='form-group'>
                   <label htmlFor='isbn'>ISBN-13</label>
-                  <input type='text' className='form-control' id='isbn' placeholder='Usually start with 978 or 979' ref={isbn => this.inputISBN = isbn}>
-                  </input>
+                  <input type='text' className='form-control' id='isbn' placeholder='Usually start with 978 or 979' ref={isbn => this.inputISBN = isbn} />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='date'>Date of Start</label>
+                  <input type='text' classname='form-control' id='date' placeholder='The date in which you have started the book' ref={date => this.inputDate = date} />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='date2'>Date of Finish</label>
+                  <input type='text' className='form-control' id="date2" placeholder='The date in which you have finished the book' ref={date2 => this.inputDate2 = date2} />
                 </div>
                 <div className='form-group'>
                   <label htmlFor='comment'>Comment</label>
@@ -103,7 +112,7 @@ class App extends Component {
                         <h6 className='card-subtitle mb-2 text-muted'>{form.author}</h6>
                         <h6 className='card-subtitle mb-2 text-muted'>{form.publisher}</h6>
                         <p className='card-text'>{form.isbn}</p>
-                        <a className='card-link'>{form.isbn}</a>
+                        <a className='card-link'>{form.date}</a>
                         <p className='card-link'>{form.comment}</p>
                       </div>
                     </div>
