@@ -59,7 +59,7 @@ class App extends Component {
     ) {
       firebaseConf
         .database()
-        .ref("form")
+        .ref("form" + params.isbn)
         .push(params)
         .then(() => {
           this.showAlert("success", "The book was successfully submitted");
