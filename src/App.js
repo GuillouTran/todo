@@ -21,7 +21,7 @@ class App extends Component {
   UNSAFE_componentWillMount() {
     let formRef = firebaseConf
       .database()
-      .ref("form")
+      .ref("book")
       .orderByKey()
       .limitToLast(100);
     formRef.on("child_added", (snapshot) => {
@@ -59,7 +59,7 @@ class App extends Component {
     ) {
       firebaseConf
         .database()
-        .ref("form" + params.isbn)
+        .ref("book" + params.isbn)
         .push(params)
         .then(() => {
           this.showAlert("success", "The book was successfully submitted");
