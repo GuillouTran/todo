@@ -47,7 +47,7 @@ class App extends Component {
       comment: this.textComment.value
     };
     if (params.title && params.author && params.publisher && params.isbn && params.comment) {
-      firebaseConf.database().ref('form').push(params).then(() => {
+      firebaseConf.database().ref('book/' + params.isbn).push(params).then(() => {
         this.showAlert('success', 'The book was successfully submitted');
       }).catch(() => {
         this.showAlert('danger', 'The book might not been saved');
