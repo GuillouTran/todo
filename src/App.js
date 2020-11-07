@@ -41,7 +41,7 @@ class App extends Component {
 
   sendMessage(e) {
     e.preventDefault();
-    const params = {
+    const book = {
       title: this.inputTitle.value,
       author: this.inputAuthor.value,
       publisher: this.inputPublisher.value,
@@ -51,16 +51,16 @@ class App extends Component {
       comment: this.textComment.value,
     };
     if (
-      params.title &&
-      params.author &&
-      params.publisher &&
-      params.isbn &&
-      params.comment
+      book.title &&
+      book.author &&
+      book.publisher &&
+      book.isbn &&
+      book.comment
     ) {
       firebaseConf
         .database()
-        .ref("book" + params.isbn)
-        .push(params)
+        .ref("book")
+        .push(book)
         .then(() => {
           this.showAlert("success", "The book was successfully submitted");
         })
