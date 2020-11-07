@@ -16,11 +16,10 @@ currently being supported with security updates.
 
 Use this section to tell people how to report a vulnerability.
 
-<<<<<<< HEAD
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
-=======
-Tell them where to go, how often they can expect to get an update on a reported
-vulnerability, what to expect if the vulnerability is accepted or declined, etc.
->>>>>>> 97228ad99df36ce6898d1357e452177e519a3140
+<<<<<<< HEAD Tell them where to go, how often they can expect to get an update
+on a reported vulnerability, what to expect if the vulnerability is accepted or
+declined, etc. ======= Tell them where to go, how often they can expect to get
+an update on a reported vulnerability, what to expect if the vulnerability is
+accepted or declined, etc.
+
+> > > > > > > 97228ad99df36ce6898d1357e452177e519a3140
