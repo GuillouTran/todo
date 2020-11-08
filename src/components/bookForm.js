@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import firebaseConf from "./components/Firebase";
-import displayBook from "./components/displayBook"
 
-class App extends Component {
+class bookForm extends Component {
   constructor(props) {
     super(props);
     this.state = { book: [], alert: false, alertData: {} };
@@ -165,7 +164,6 @@ class App extends Component {
                   Send
                 </button>
               </form>
-              <dislayBook />
             </div>
           </div>
         </div>
@@ -174,4 +172,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default bookForm;
