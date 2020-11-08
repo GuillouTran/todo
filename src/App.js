@@ -1,30 +1,24 @@
-import React, { Component } from "react";
-import firebaseConf from "./components/Firebase";
+import React, {Component} from "react";
+
 import displayBook from "./components/displayBook"
+import firebaseConf from "./components/Firebase";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { book: [], alert: false, alertData: {} };
+    this.state = {book : [], alert : false, alertData : {}};
   }
 
   showAlert(type, message) {
-    this.setState({ alert: true, alertData: { type, message } });
-    setTimeout(() => {
-      this.setState({ alert: false });
-    }, 4000);
+    this.setState({alert : true, alertData : {type, message}});
+    setTimeout(() => { this.setState({alert : false}); }, 4000);
   }
 
-  resetBook() {
-    this.refs.bookVault.reset();
-  }
+  resetBook() { this.refs.bookVault.reset(); }
 
   UNSAFE_componentWillMount() {
-    let bookRef = firebaseConf
-      .database()
-      .ref("book")
-      .orderByKey()
-      .limitToLast(100);
+    let bookRef =
+        firebaseConf.database().ref("book").orderByKey().limitToLast(100);
     bookRef.on("child_added", (snapshot) => {
       const {
         title,
@@ -35,39 +29,33 @@ class App extends Component {
         date2,
         comment,
       } = snapshot.val();
-      const data = { title, author, isbn, publisher, date, date2, comment };
-      this.setState({ book: [data].concat(this.state.form) });
+      const data = {title, author, isbn, publisher, date, date2, comment};
+      this.setState({book : [ data ].concat(this.state.form)});
     });
   }
 
   sendMessage(e) {
     e.preventDefault();
     const book = {
-      title: this.inputTitle.value,
-      author: this.inputAuthor.value,
-      publisher: this.inputPublisher.value,
-      isbn: this.inputISBN.value,
-      date: this.inputDate.value,
-      date2: this.inputDate2.value,
-      comment: this.textComment.value,
+      title : this.inputTitle.value,
+      author : this.inputAuthor.value,
+      publisher : this.inputPublisher.value,
+      isbn : this.inputISBN.value,
+      date : this.inputDate.value,
+      date2 : this.inputDate2.value,
+      comment : this.textComment.value,
     };
-    if (
-      book.title &&
-      book.author &&
-      book.publisher &&
-      book.isbn &&
-      book.comment
-    ) {
-      firebaseConf
-        .database()
-        .ref("book")
-        .push(book)
-        .then(() => {
-          this.showAlert("success", "The book was successfully submitted");
-        })
-        .catch(() => {
-          this.showAlert("danger", "The book might not been saved");
-        });
+    if (book.title && book.author && book.publisher && book.isbn &&
+        book.comment) {
+      firebaseConf.database()
+          .ref("book")
+          .push(book)
+          .then(() => {
+            this.showAlert("success", "The book was successfully submitted");
+          })
+          .catch(() => {
+            this.showAlert("danger", "The book might not been saved");
+          });
       this.resetBook();
     } else {
       this.showAlert("warning", "Please fill the form");
@@ -85,7 +73,8 @@ class App extends Component {
             <div className="container">{this.state.alertData.message}</div>
           </div>
         )}
-        <div className="container" style={{ padding: `40px 0px` }}>
+        <div className="container" style={{
+      padding: `40px 0px` }}>
           {" "}
           <div className="row">
             <div className="col-sm-4">
@@ -94,15 +83,15 @@ class App extends Component {
                 <div className="form-group">
                   <label htmlFor="title">Title</label>
                   <input
-                    type="text"
-                    className="form-control"
-                    id="title"
-                    placeholder="The title of the book"
-                    ref={(title) => (this.inputTitle = title)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="author">Author</label>
+            type = "text"
+            className = "form-control"
+            id = "title"
+            placeholder = "The title of the book"
+            ref =
+            { (title) => (this.inputTitle = title) } />
+                </div >
+                <div className = "form-group"><label htmlFor = "author">Author<
+                    /label>
                   <input
                     type="text"
                     className="form-control"
@@ -112,37 +101,40 @@ class App extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="publisher">Publisher</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="publisher"
-                    placeholder="The Publisher of the book"
-                    ref={(publisher) => (this.inputPublisher = publisher)}
-                  />
-                </div>{" "}
-                <div className="form-group">
-                  <label htmlFor="isbn">ISBN - 13 </label>
+                  <label htmlFor="publisher">Publisher</label><
+                input
+            type = "text"
+            className = "form-control"
+            id = "publisher"
+            placeholder = "The Publisher of the book"
+            ref =
+            {
+              (publisher) => (this.inputPublisher = publisher)
+            } />
+                </div > {" "}<div className = "form-group">
+                                             <label htmlFor = "isbn">ISBN - 13 <
+                /label>
                   <input
                     type="text"
                     className="form-control"
                     id="isbn"
                     placeholder="Usually start with 978 or 979"
                     ref={(isbn) => (this.inputISBN = isbn)}
-                  />
+                  / >
                 </div>
                 <div className="form-group">
-                  <label htmlFor="date">Date of Start</label>
-                  <input
-                    type="text"
-                    classname="form-control"
-                    id="date"
-                    placeholder="The date in which you have started the book"
-                    ref={(date) => (this.inputDate = date)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="date2">Date of Finish</label>
+                  <label htmlFor="date">Date of Start</label><
+                input
+            type = "text"
+            classname = "form-control"
+            id = "date"
+            placeholder = "The date in which you have started the book"
+            ref =
+            { (date) => (this.inputDate = date) } />
+                </div >
+                <div className = "form-group">
+                <label htmlFor = "date2">Date of Finish<
+                    /label>
                   <input
                     type="text"
                     className="form-control"
@@ -152,12 +144,12 @@ class App extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="comment">Comment</label>
-                  <textarea
-                    type="text"
-                    className="form-control"
-                    id="comment"
-                    rows="3"
+                  <label htmlFor="comment">Comment</label><
+                textarea
+            type = "text"
+            className = "form-control"
+            id = "comment"
+            rows = "3"
                     ref={(comment) => (this.textComment = comment)}
                   ></textarea>
                 </div>
