@@ -34,5 +34,17 @@
   "bugs": {
     "url": "https://github.com/guilloutran/todo/issues"
   },
-  "homepage": "https://vault.guilloutran.com/"
+  "homepage": "https://vault.guilloutran.com/",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
