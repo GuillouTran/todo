@@ -38,34 +38,37 @@ class displayBook extends Component {
       this.setState({ form: [data].concat(this.state.form) });
     });
   }
-    render() {
+  render() {
     return (
-                   <div className="col-sm-8">
-              <div className="row">
-                {this.state.form.map((form) => (
-                  <div
-                    className="col-sm-4"
-                    key={form.phone}
-                    style={{ margin: `0px 0px 30px 0px` }}
-                  >
-                    <div className="card">
-                      <div className="card-body">
-                        <h4 className="card-title">{form.title}</h4>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          {form.author}
-                        </h6>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          {form.publisher}
-                        </h6>
-                        <p className="card-text">{form.isbn}</p>
-                        <a className="card-link">{form.date}</a>
-                        <p className="card-link">{form.comment}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+      <div className="col-sm-8">
+        <div className="row">
+          {this.state.form.map((form) => (
+            <div
+              className="col-sm-4"
+              key={form.phone}
+              style={{ margin: `0px 0px 30px 0px` }}
+            >
+              {" "}
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="card-title">{form.title}</h4>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    {form.author}
+                  </h6>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    {form.publisher}
+                  </h6>
+                  <p className="card-text">{form.isbn}</p>
+                  <a className="card-link">{form.date}</a>
+                  <p className="card-link">{form.comment}</p>
+                </div>
               </div>
             </div>
-    )}}
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default displayBook;

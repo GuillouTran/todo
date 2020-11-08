@@ -1,5 +1,4 @@
-
-import firebase from 'firebase';
+import firebase from "firebase";
 
 const config = {
   apiKey: "AIzaSyAXSBUEREBmqSxolYxZDzjg9dzj98rprU0",
@@ -9,7 +8,7 @@ const config = {
   storageBucket: "guilloutran-book.appspot.com",
   messagingSenderId: "25555383907",
   appId: "1:25555383907:web:cf76833bfe14c6059faa56",
-  measurementId: "G-LCMSSKY1WG"
+  measurementId: "G-LCMSSKY1WG",
 };
 
 const firebaseConf = firebase.initializeApp(config);
