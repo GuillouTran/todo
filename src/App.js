@@ -184,7 +184,16 @@ class App extends Component {
                         </h6>
                         <p className="card-text">{form.isbn}</p>
                         <a className="card-link">{form.date}</a>
-                        <p className="card-link">{form.comm
+                        <p className="card-link">{form.comment}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
