@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import firebaseConf from "./components/Firebase";
-import displayBook from "./components/displayBook"
+import firebaseConf from "./Firebase";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { book: [], alert: false, alertData: {} };
+    this.state = { form: [], alert: false, alertData: {} };
   }
 
   showAlert(type, message) {
@@ -15,17 +14,15 @@ class App extends Component {
     }, 4000);
   }
 
-  resetBook() {
+  resetForm() {
     this.refs.bookVault.reset();
   }
-
-  UNSAFE_componentWillMount() {
-    let bookRef = firebaseConf
+    let formRef = firebaseConf
       .database()
       .ref("book")
       .orderByKey()
       .limitToLast(100);
-    bookRef.on("child_added", (snapshot) => {
+    formRef.on("child_added", (snapshot) => {
       const {
         title,
         author,
@@ -36,7 +33,7 @@ class App extends Component {
         comment,
       } = snapshot.val();
       const data = { title, author, isbn, publisher, date, date2, comment };
-      this.setState({ book: [data].concat(this.state.form) });
+      this.setState({ form: [data].concat(this.state.form) });
     });
   }
 
@@ -68,12 +65,11 @@ class App extends Component {
         .catch(() => {
           this.showAlert("danger", "The book might not been saved");
         });
-      this.resetBook();
+      this.resetForm();
     } else {
       this.showAlert("warning", "Please fill the form");
     }
   }
-
   render() {
     return (
       <div>
@@ -120,7 +116,7 @@ class App extends Component {
                     placeholder="The Publisher of the book"
                     ref={(publisher) => (this.inputPublisher = publisher)}
                   />
-                </div>{" "}
+                </div>
                 <div className="form-group">
                   <label htmlFor="isbn">ISBN - 13 </label>
                   <input
@@ -165,13 +161,11 @@ class App extends Component {
                   Send
                 </button>
               </form>
-              <dislayBook />
             </div>
-          </div>
-        </div>
-      </div>
-    );
+            </div>
+            </div>
+            </div>
+        );
   }
-}
 
 export default App;
