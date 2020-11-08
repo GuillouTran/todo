@@ -18,27 +18,6 @@ class App extends Component {
     this.refs.bookVault.reset();
   }
 
-  UNSAFE_componentWillMount() {
-    let formRef = firebaseConf
-      .database()
-      .ref("book")
-      .orderByKey()
-      .limitToLast(100);
-    formRef.on("child_added", (snapshot) => {
-      const {
-        title,
-        author,
-        isbn,
-        publisher,
-        date,
-        date2,
-        comment,
-      } = snapshot.val();
-      const data = { title, author, isbn, publisher, date, date2, comment };
-      this.setState({ form: [data].concat(this.state.form) });
-    });
-  }
-
   sendMessage(e) {
     e.preventDefault();
     const book = {
@@ -71,6 +50,27 @@ class App extends Component {
     } else {
       this.showAlert("warning", "Please fill the form");
     }
+  }
+
+  UNSAFE_componentWillMount() {
+    let formRef = firebaseConf
+      .database()
+      .ref("book")
+      .orderByKey()
+      .limitToLast(100);
+    formRef.on("child_added", (snapshot) => {
+      const {
+        title,
+        author,
+        isbn,
+        publisher,
+        date,
+        date2,
+        comment,
+      } = snapshot.val();
+      const data = { title, author, isbn, publisher, date, date2, comment };
+      this.setState({ form: [data].concat(this.state.form) });
+    });
   }
 
   render() {
