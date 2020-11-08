@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebaseConf from "./Firebase";
+import firebaseConf from "./components/Firebase";
 
 class App extends Component {
   constructor(props) {
@@ -184,16 +184,7 @@ class App extends Component {
                         </h6>
                         <p className="card-text">{form.isbn}</p>
                         <a className="card-link">{form.date}</a>
-                        <p className="card-link">{form.comment}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                        <p className="card-link">{form.comm
     );
   }
 }
