@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import {AiOutlineBook} from "react-icons/ai"
-import {FcBusinessman} from "react-icons/fc"
+import { AiOutlineBook } from "react-icons/ai";
+import { FcBusinessman } from "react-icons/fc";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import firebaseConf from "./Firebase";
 
 class App extends Component {
@@ -167,32 +168,42 @@ class App extends Component {
                 </button>
               </form>
             </div>
-            <div className="col-sm-8">
-              <div className="row">
-                {this.state.form.map((form) => (
-                  <div
-                    className="col-sm-4"
-                    key={form.phone}
-                    style={{ margin: `0px 0px 30px 0px` }}
-                  >
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 class="card-title">{form.title}</h5>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          <FcBusinessman /> <i>{form.author}</i>
-                        </h6>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          <AiOutlineBook /> {form.publisher}
-                        </h6>
-                        <a className="card-text" href={'https://books.google.com/books?vid=ISBN' + form.isbn}></a>
-                        <a className="card-link">{form.date}</a>
-                        <p className="card-link">{form.comment}</p>
+            <Router>
+              <div className="col-sm-8">
+                <div className="row">
+                  {this.state.form.map((form) => (
+                    <div
+                      className="col-sm-4"
+                      key={form.phone}
+                      style={{ margin: `0px 0px 30px 0px` }}
+                    >
+                      <div className="card">
+                        <div className="card-body">
+                          <h5 class="card-title">{form.title}</h5>
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            <FcBusinessman /> <i>{form.author}</i>
+                          </h6>
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            <AiOutlineBook /> {form.publisher}
+                          </h6>
+                          <Link
+                            className="card-text"
+                            to={
+                              "https://books.google.com/books?vid=ISBN" +
+                              "form.isbn"
+                            }
+                          >
+                            {form.isbn}
+                          </Link>
+                          <a className="card-link">{form.date}</a>
+                          <p className="card-link">{form.comment}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </Router>
           </div>
         </div>
       </div>
