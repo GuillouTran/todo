@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { AiOutlineBook } from "react-icons/ai";
+import { FcBusinessman } from "react-icons/fc";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import firebaseConf from "./Firebase";
 
 class App extends Component {
@@ -16,27 +19,6 @@ class App extends Component {
 
   resetForm() {
     this.refs.bookVault.reset();
-  }
-
-  UNSAFE_componentWillMount() {
-    let formRef = firebaseConf
-      .database()
-      .ref("book")
-      .orderByKey()
-      .limitToLast(100);
-    formRef.on("child_added", (snapshot) => {
-      const {
-        title,
-        author,
-        isbn,
-        publisher,
-        date,
-        date2,
-        comment,
-      } = snapshot.val();
-      const data = { title, author, isbn, publisher, date, date2, comment };
-      this.setState({ form: [data].concat(this.state.form) });
-    });
   }
 
   sendMessage(e) {
@@ -71,6 +53,27 @@ class App extends Component {
     } else {
       this.showAlert("warning", "Please fill the form");
     }
+  }
+
+  UNSAFE_componentWillMount() {
+    let formRef = firebaseConf
+      .database()
+      .ref("book")
+      .orderByKey()
+      .limitToLast(100);
+    formRef.on("child_added", (snapshot) => {
+      const {
+        title,
+        author,
+        isbn,
+        publisher,
+        date,
+        date2,
+        comment,
+      } = snapshot.val();
+      const data = { title, author, isbn, publisher, date, date2, comment };
+      this.setState({ form: [data].concat(this.state.form) });
+    });
   }
 
   render() {
@@ -134,7 +137,7 @@ class App extends Component {
                   <label htmlFor="date">Date of Start</label>
                   <input
                     type="text"
-                    classname="form-control"
+                    className="form-control"
                     id="date"
                     placeholder="The date in which you have started the book"
                     ref={(date) => (this.inputDate = date)}
@@ -165,32 +168,42 @@ class App extends Component {
                 </button>
               </form>
             </div>
-            <div className="col-sm-8">
-              <div className="row">
-                {this.state.form.map((form) => (
-                  <div
-                    className="col-sm-4"
-                    key={form.phone}
-                    style={{ margin: `0px 0px 30px 0px` }}
-                  >
-                    <div className="card">
-                      <div className="card-body">
-                        <h4 className="card-title">{form.title}</h4>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          {form.author}
-                        </h6>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          {form.publisher}
-                        </h6>
-                        <p className="card-text">{form.isbn}</p>
-                        <a className="card-link">{form.date}</a>
-                        <p className="card-link">{form.comment}</p>
+            <Router>
+              <div className="col-sm-8">
+                <div className="row">
+                  {this.state.form.map((form) => (
+                    <div
+                      className="col-sm-4"
+                      key={form.phone}
+                      style={{ margin: `0px 0px 30px 0px` }}
+                    >
+                      <div className="card">
+                        <div className="card-body">
+                          <h5 class="card-title">{form.title}</h5>
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            <FcBusinessman /> <i>{form.author}</i>
+                          </h6>
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            <AiOutlineBook /> {form.publisher}
+                          </h6>
+                          <Link
+                            className="card-text"
+                            to={
+                              "https://books.google.com/books?vid=ISBN" +
+                              "form.isbn"
+                            }
+                          >
+                            {form.isbn}
+                          </Link>
+                          <a className="card-link">{form.date}</a>
+                          <p className="card-link">{form.comment}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </Router>
           </div>
         </div>
       </div>
