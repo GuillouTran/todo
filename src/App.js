@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {AiOutlineBook} from "react-icons/ai"
+import {FcBusinessman} from "react-icons/fc"
 import firebaseConf from "./Firebase";
 
 class App extends Component {
@@ -134,7 +136,7 @@ class App extends Component {
                   <label htmlFor="date">Date of Start</label>
                   <input
                     type="text"
-                    classname="form-control"
+                    className="form-control"
                     id="date"
                     placeholder="The date in which you have started the book"
                     ref={(date) => (this.inputDate = date)}
@@ -175,14 +177,14 @@ class App extends Component {
                   >
                     <div className="card">
                       <div className="card-body">
-                        <h4 className="card-title">{form.title}</h4>
+                        <h5 class="card-title">{form.title}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">
-                          {form.author}
+                          <FcBusinessman /> <i>{form.author}</i>
                         </h6>
                         <h6 className="card-subtitle mb-2 text-muted">
-                          {form.publisher}
+                          <AiOutlineBook /> {form.publisher}
                         </h6>
-                        <p className="card-text">{form.isbn}</p>
+                        <a className="card-text" href={'https://books.google.com/books?vid=ISBN' + form.isbn}></a>
                         <a className="card-link">{form.date}</a>
                         <p className="card-link">{form.comment}</p>
                       </div>
